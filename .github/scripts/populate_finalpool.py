@@ -20,8 +20,9 @@ def main():
                 continue
             prefix = None
             for f in files:
-                if f.startswith("tasks/") and f.split("/")[-2] == task:
-                    prefix = "/".join(f.split("/")[:-1])
+                parts = f.split("/")
+                if len(parts) >= 4 and parts[0] == "tasks" and parts[2] == task:
+                    prefix = "/".join(parts[:3])
                     break
             if not prefix:
                 continue
